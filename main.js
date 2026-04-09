@@ -70,3 +70,19 @@ const navObserver = new IntersectionObserver(entries => {
 }, { rootMargin: '-50% 0px -50% 0px' });
 
 sections.forEach(s => navObserver.observe(s));
+// ---------- Form handling & Personalization -----------------
+const contactForm = document.querySelector('.final-cta__form');
+const phoneInput = document.querySelector('input[name="telefone"]');
+
+if (contactForm && phoneInput) {
+  // Simple phone masking (Brazilian standard)
+  phoneInput.addEventListener('input', (e) => {
+    let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+    e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+  });
+
+  contactForm.addEventListener('submit', (e) => {
+    // Ensuring the form submits naturally but we could add custom tracking here
+    // The name will be in the URL as ?nome=...
+  });
+}

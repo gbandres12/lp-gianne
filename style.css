@@ -166,12 +166,17 @@ details summary::-webkit-details-marker { display: none; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  background: rgba(255,255,255,.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--gray-200);
-  transition: box-shadow var(--transition);
+  background: rgba(255,255,255,.8);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255,255,255,.3);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.nav.scrolled { box-shadow: var(--shadow-md); }
+.nav.scrolled {
+  background: rgba(255,255,255,.95);
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+  padding: 5px 0;
+}
 
 .nav__inner {
   display: flex;
@@ -318,27 +323,30 @@ details summary::-webkit-details-marker { display: none; }
 }
 
 .problem__item {
-  background: var(--gray-50);
-  border: 1px solid var(--gray-200);
-  border-radius: var(--radius-md);
-  padding: 28px 24px;
-  transition: border-color var(--transition), box-shadow var(--transition);
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
 }
 
 .problem__item:hover {
   border-color: var(--green-200);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 20px 40px -10px rgba(22, 163, 74, 0.15);
+  transform: translateY(-8px);
 }
 
 .problem__icon {
-  font-size: 2rem;
-  margin-bottom: 12px;
+  font-size: 2.25rem;
+  margin-bottom: 16px;
+  display: block;
 }
 
 .problem__item p {
-  color: var(--gray-700);
-  font-size: .95rem;
-  line-height: 1.65;
+  color: var(--gray-600);
+  font-size: 0.95rem;
+  line-height: 1.7;
 }
 
 .problem__transition {
@@ -1052,8 +1060,9 @@ details summary::-webkit-details-marker { display: none; }
 ============================================================ */
 .animate {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity .6s ease, transform .6s ease;
+  transform: translateY(40px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
 .animate.visible {
@@ -1066,6 +1075,20 @@ details summary::-webkit-details-marker { display: none; }
 .animate-delay-3 { transition-delay: .3s; }
 .animate-delay-4 { transition-delay: .4s; }
 .animate-delay-5 { transition-delay: .5s; }
+
+/* Pulse for primary buttons */
+@keyframes pulse-green {
+  0% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(22, 163, 74, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+}
+
+.btn--primary {
+  animation: pulse-green 2.5s infinite;
+}
+.btn--primary:hover {
+  animation: none;
+}
 
 /* ============================================================
    RESPONSIVE ADJUSTMENTS
