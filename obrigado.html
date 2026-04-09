@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Obrigado | Dra. Gianne Lima Brito</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-50:  #f0fdf4;
+      --green-100: #dcfce7;
+      --green-600: #16a34a;
+      --green-700: #15803d;
+      --gray-600: #4b5563;
+      --gray-900: #111827;
+      --white: #ffffff;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--green-50);
+      color: var(--gray-900);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 24px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .logo {
+      height: 60px;
+      margin-bottom: 32px;
+    }
+    h1 {
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      font-weight: 800;
+      color: var(--green-700);
+      margin-top: 0;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    p {
+      font-size: 1.1rem;
+      max-width: 500px;
+      color: var(--gray-600);
+      line-height: 1.6;
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+    .spinner {
+      margin: 32px auto;
+      width: 48px;
+      height: 48px;
+      border: 4px solid var(--green-100);
+      border-top-color: var(--green-600);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 24px;
+      padding: 16px 32px;
+      background: var(--green-600);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 8px 30px rgba(22,163,74,.35);
+    }
+    .btn:hover {
+      background: var(--green-700);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 35px rgba(22,163,74,.45);
+    }
+  </style>
+</head>
+<body>
+  
+  <img src="logo.svg" alt="Dra. Gianne Lima Brito" class="logo" />
+  
+  <h1>Tudo certo!</h1>
+  <p>Recebemos suas informações e estamos prontos para atender você.</p>
+  <p>Você será redirecionado para o nosso WhatsApp em <strong id="countdown">5</strong> segundos...</p>
+  
+  <div class="spinner"></div>
+  
+  <a href="https://wa.me/559300000000?text=Ol%C3%A1%21+Acabei+de+me+cadastrar+pelo+site+e+gostaria+de+agendar+minha+avalia%C3%A7%C3%A3o+com+a+Dra.+Gianne." class="btn">
+    Ir para o WhatsApp agora
+  </a>
+
+  <script>
+    let timeLeft = 5;
+    const countdownEl = document.getElementById('countdown');
+    const waLink = "https://wa.me/559300000000?text=Ol%C3%A1%21+Acabei+de+me+cadastrar+pelo+site+e+gostaria+de+agendar+minha+avalia%C3%A7%C3%A3o+com+a+Dra.+Gianne.";
+    
+    const timer = setInterval(() => {
+      timeLeft -= 1;
+      countdownEl.innerText = timeLeft;
+      
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        window.location.href = waLink;
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
