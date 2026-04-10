@@ -1,0 +1,25 @@
+name: Deployment Validation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Check for essential files
+        run: |
+          test -f index.html || exit 1
+          test -f style.css || exit 1
+          test -f main.js || exit 1
+          test -f vercel.json || exit 1
+          
+      - name: Basic HTML validation
+        run: |
+          # Ensure index.html is not empty and has a doctype
+          grep -i "<!DOCTYPE html>" index.html
